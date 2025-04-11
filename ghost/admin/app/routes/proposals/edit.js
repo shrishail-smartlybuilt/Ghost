@@ -3,7 +3,7 @@
 import AuthenticatedRoute from 'ghost-admin/routes/authenticated';
 import fetch from 'fetch';
 
-const ORIGIN_URL = (location.hostname === 'localhost' ? 'https://nirvana.jacktrade.co' : location.origin) + '/JT_Innova_ContentBuilder/latest/public/';
+const ORIGIN_URL = 'https://nirvana.jacktrade.co/JT_Innova_ContentBuilder/latest/public/';
 let builder, builderOptions, self, proposalcss;
 
 export default class ProposalsEditRoute extends AuthenticatedRoute {
