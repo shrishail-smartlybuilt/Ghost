@@ -134,6 +134,13 @@
                     <LinkTo @route="pages" data-test-nav="pages">{{svg-jar "page"}}Pages</LinkTo>
                     {{/if}}
                 </li>
+
+                <li class="gh-nav-list-proposals">
+                    <LinkTo @route="proposals" data-test-nav="proposals">
+                        {{svg-jar "idea"}} Proposals
+                    </LinkTo>
+                </li>
+                
                 {{#if this.showTagsNavigation}}
                 <li>
                     <LinkTo @route="tags" @current-when="tags tag tag.new" data-test-nav="tags">{{svg-jar "tag"}}Tags

@@ -43,6 +43,11 @@ Router.map(function () {
 
     this.route('pages');
 
+    this.route('proposals', function () {
+        this.route('new');
+        this.route('edit', {path: '/:proposal_id'});
+    });
+
     this.route('lexical-editor', {path: 'editor'}, function () {
         this.route('new', {path: ':type'});
         this.route('edit', {path: ':type/:post_id'});

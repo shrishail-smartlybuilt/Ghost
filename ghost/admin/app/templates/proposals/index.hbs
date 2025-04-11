@@ -1,0 +1,23 @@
+<section class="gh-canvas gh-canvas-sticky">
+    <GhCanvasHeader class="gh-canvas-header sticky break tablet post-header">
+        <GhCustomViewTitle @title="Proposals" @query={{reset-query-params "posts" }} />
+
+        <section class="view-actions">
+            <LinkTo @route="proposals.new" class="gh-btn gh-btn-primary view-actions-top-row">
+                <span>New Proposal</span>
+            </LinkTo>
+        </section>
+    </GhCanvasHeader>
+
+    <section class="view-container content-list">
+        <ul class="proposals-list">
+            {{#each this.model as |proposal|}}
+            <li>
+                <LinkTo @route="proposals.edit" @model={{proposal.id}}>
+                    {{proposal.title}}
+                </LinkTo>
+            </li>
+            {{/each}}
+        </ul>
+    </section>
+</section>

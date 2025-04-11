@@ -25,8 +25,9 @@ export const routes: CustomRouteObject[] = [
         errorElement: <Error />, // This will catch all errors in child routes
         children: [
             {
-                index: true,
-                element: <Navigate to="inbox" />
+                path: '/',
+                element: <Navigate to="inbox" />,
+                pageTitle: 'Home'
             },
             {
                 path: 'inbox',
@@ -75,29 +76,35 @@ export const routes: CustomRouteObject[] = [
                 children: [
                     {
                         path: '',
-                        element: <Navigate to="1" replace />
+                        element: <Navigate to="1" replace />,
+                        pageTitle: 'Welcome Start'
                     },
                     {
                         path: '1',
-                        element: <OnboardingStep1 />
+                        element: <OnboardingStep1 />,
+                        pageTitle: 'Welcome Step1'
                     },
                     {
                         path: '2',
-                        element: <OnboardingStep2 />
+                        element: <OnboardingStep2 />,
+                        pageTitle: 'Welcome Step2'
                     },
                     {
                         path: '3',
-                        element: <OnboardingStep3 />
+                        element: <OnboardingStep3 />,
+                        pageTitle: 'Welcome Step3'
                     },
                     {
                         path: '*',
-                        element: <Navigate to="1" replace />
+                        element: <Navigate to="1" replace />,
+                        pageTitle: 'Welcome Step*'
                     }
                 ]
             },
             {
                 path: '*',
-                element: <Error />
+                element: <Error />,
+                pageTitle: 'Generic Error'
             }
         ]
     }
