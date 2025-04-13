@@ -18,7 +18,7 @@ export default class ProposalsEditRoute extends AuthenticatedRoute {
         this.loadLibraries();
 
         if (!$('.content-css').length) {
-            this.loadAndScopeCSS('https://nirvana.jacktrade.co/JT_Innova_ContentBuilder/latest/public/assets/minimalist-blocks/content.css', '#proposal-container');
+            this.loadAndScopeCSS(ORIGIN_URL + 'assets/minimalist-blocks/content.css', '#proposal-container');
         }
 
         return proposals.find(p => p.id === params.proposal_id);
