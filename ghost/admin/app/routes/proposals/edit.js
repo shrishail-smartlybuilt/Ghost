@@ -389,7 +389,7 @@ export default class ProposalsEditRoute extends AuthenticatedRoute {
         builder = new ContentBuilder(builderOptions); // Start ContentBuilder
 
         if (!proposalcss) {
-            builder.loadSnippets(ORIGIN_URL + 'assets/minimalist-blocks/content.js');
+            builder.loadSnippets(ORIGIN_URL + 'assets/minimalist-blocks/content.js?hostname=localhost');
         }
 
         // localStorage.removeItem('mycanvas'); // clear
