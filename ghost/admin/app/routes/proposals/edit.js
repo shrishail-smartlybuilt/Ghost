@@ -288,7 +288,7 @@ export default class ProposalsEditRoute extends AuthenticatedRoute {
             // // viewFileUrl: '/viewfile', // If using S3
 
             // If you need to change some paths:
-            snippetUrl: ORIGIN_URL + 'assets/minimalist-blocks/content.js?hostname=localhost&v=1', // Snippet file
+            snippetUrl: ORIGIN_URL + 'assets/minimalist-blocks/content.js', // Snippet file
             snippetPath: ORIGIN_URL + 'assets/minimalist-blocks/', // Location of snippets' assets
             modulePath: ORIGIN_URL + 'assets/modules/',
             assetPath: ORIGIN_URL + 'assets/',
@@ -389,7 +389,7 @@ export default class ProposalsEditRoute extends AuthenticatedRoute {
         builder = new ContentBuilder(builderOptions); // Start ContentBuilder
 
         if (!proposalcss) {
-            builder.loadSnippets(ORIGIN_URL + 'assets/minimalist-blocks/content.js?hostname=localhost&v=1');
+            builder.loadSnippets(ORIGIN_URL + 'assets/minimalist-blocks/content.js');
         }
 
         // localStorage.removeItem('mycanvas'); // clear
