@@ -1,5 +1,142 @@
-<section class="gh-canvas">
+<section class="gh-canvas proposel-new">
     <header class="gh-canvas-header">
-        <h2 class="gh-canvas-title">New Proposal</h2>
+        <h2 class="gh-canvas-title">New Proposals</h2>
     </header>
+
+    <div class="gh-onboarding-items">
+        <div class="gh-onboarding-item-content" {{on "click" this.openModal}}>
+            <li class="gh-onboarding-item-details">
+                <span class="gh-onboarding-item-title">{{model.title}}</span>
+                <span class="gh-onboarding-item-description">{{model.content}}</span>
+            </li>
+        </div>
+
+        <ModalBox @isOpen={{this.isModalOpen}} @onClose={{this.closeModal}}>
+            {{#if (eq this.currentStep 1)}}
+                <div class="text-center">
+                    <button class="gh-btn gh-btn-primary mb-4"><span>START</span></button>
+                    <h2 class="text-xl font-bold mb-1">Let’s generate</h2>
+                    <p class="mb-6">Enter topic that you like to generate content on.</p>
+                </div>
+
+                <div class="mb-4 topic-div">
+                    <div class="mb-2 topic-div-content">
+                        <span>For the</span>
+                        <span class="badge">Religious</span>
+                        <span class="badge">Community</span>,
+                        <strong>generate</strong>
+                        <span class="badge">Single</span>
+                        <span class="badge">Blog Post</span>
+                        <strong>on the following topic(s)</strong>.
+                    </div>
+                </div>
+
+                <div class="mb-4 input-div">
+                    <label><strong>Topic or Focus:</strong></label>
+                    <input type="text" class="form-control first-input" placeholder="Enter topic or subject. Ex, How small can maintain better cash flow with systems automation.">
+                </div>
+
+                <div class="mb-4 input-div">
+                    <input type="text" class="form-control" placeholder="Enter any related context (max content size to be 4000 characters)">
+                </div>
+
+                <div class="mb-4 input-div">
+                    <input type="text" class="form-control" placeholder="Enter corresponding website URL">
+                </div>
+
+                <div class="flex justify-between items-center bottom-section mt-8">
+                    <div class="flex items-center text-xs text-gray-500 info-div">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20.5C6.753 20.5 2.5 16.247 2.5 11S6.753 1.5 12 1.5 21.5 5.753 21.5 11 17.247 20.5 12 20.5z"/>
+                        </svg>
+                        <span>More Info</span>
+                    </div>
+
+                    <div class="flex gap-2 cta-div">
+                        <button {{on "click" this.closeModal}} class="gh-btn">Close</button>
+                        <button class="gh-btn gh-btn-primary" {{on "click" this.nextStep}}>Next</button>
+                    </div>
+                </div>
+
+                
+            {{/if}}
+
+            {{#if (eq this.currentStep 2)}}
+                <div class="text-center mb-4">
+                    <button class="gh-btn gh-btn-primary rounded-full px-6 py-1 text-sm"><span>FINISH</span></button>
+                </div>
+
+                <div class="flex justify-center mb-6 tab-section">
+                    <div class="bg-gray-100 rounded-full flex gap-8 px-6 py-2 text-sm font-medium text-gray-500 tab-div">
+                        <button
+                            class="{{if (eq this.activeTab 'references') 'text-black font-semibold'}}"
+                            {{on "click" (fn this.setTab "references")}}>
+                            References
+                        </button>
+                        <button
+                            class="{{if (eq this.activeTab 'pdfs') 'text-black font-semibold'}}"
+                            {{on "click" (fn this.setTab "pdfs")}}>
+                            PDFs
+                        </button>
+                        <button
+                            class="{{if (eq this.activeTab 'social') 'text-black font-semibold'}}"
+                            {{on "click" (fn this.setTab "social")}}>
+                            Social Media
+                        </button>
+                    </div>
+                </div>
+                 <!-- Tab Content (Step 3) -->
+                {{#if (eq this.activeTab "references")}}
+                    <div class="text-center">
+                        <h2 class="text-xl font-bold mb-1">Enter References</h2>
+                        <p class="mb-6">Enter topic that you like to generate content on.</p>
+                    </div>
+
+                    <div class="mb-4 input-div">
+                        <label><strong>Inspired Information:</strong></label>
+                        <input type="text" class="form-control" placeholder="Enter competitor content URL or text">
+                    </div>
+
+                    <div class="mb-4 input-div">
+                        <label><strong>Competitor Information:</strong></label>
+                        <input type="text" class="form-control" placeholder="Enter competitor content URL or text">
+                    </div>
+                {{/if}}
+
+                {{#if (eq this.activeTab "pdfs")}}
+                    <div class="input-div">
+                        <h3 class="text-center text-lg font-bold mb-2">Upload PDFs</h3>
+                        <p class="text-center mb-6 text-sm">Attach PDFs relevant to your content generation.</p>
+                        <input type="file" class="form-control mb-4" />
+                    </div>
+                {{/if}}
+
+                {{#if (eq this.activeTab "social")}}
+                    <div class="input-div">
+                        <h3 class="text-center text-lg font-bold mb-2">Social Media</h3>
+                        <p class="text-center mb-6 text-sm">Paste social media links or content as reference.</p>
+                        <input type="text" class="form-control mb-4" placeholder="https://twitter.com/..." />
+                    </div>
+                {{/if}}
+
+                
+
+                <div class="flex justify-between items-center bottom-section mt-8">
+                    <div class="flex items-center text-xs text-gray-500 info-div">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20.5C6.753 20.5 2.5 16.247 2.5 11S6.753 1.5 12 1.5 21.5 5.753 21.5 11 17.247 20.5 12 20.5z"/>
+                        </svg>
+                        <span>More Info</span>
+                    </div>
+
+                    <div class="flex gap-2 cta-div">
+                       <button {{on "click" this.prevStep}} class="gh-btn">Back</button>
+                        <button class="gh-btn gh-btn-primary" {{on "click" this.closeModal}}>Finish</button>
+                    </div>
+                </div>
+
+                
+            {{/if}}
+        </ModalBox>
+    </div>
 </section>

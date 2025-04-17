@@ -1,0 +1,22 @@
+{{!-- {{#if @isOpen}}
+    <div class="modal-backdrop">
+        <div class="modal-box">
+            {{#if @title}}
+                <h3>{{@title}}</h3>
+            {{/if}}
+
+            {{yield}}
+
+            <button {{on "click" this.handleClose}} class="gh-btn gh-btn-primary">Close</button>
+        </div>
+    </div>
+{{/if}} --}}
+
+{{#if @isOpen}}
+    <div class="modal-backdrop">
+        <div class="modal-box">
+            {{yield}}
+        </div>
+    </div>
+{{/if}}
+

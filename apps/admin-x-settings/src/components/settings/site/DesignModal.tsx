@@ -146,7 +146,7 @@ const DesignModal: React.FC = () => {
     let previewTabs: Tab[] = [];
     if (latestPost) {
         previewTabs = [
-            {id: 'homepage', title: 'Homepage'},
+            {id: 'homepage', title: 'Homepages'},
             {id: 'post', title: 'Post'}
         ];
     }
