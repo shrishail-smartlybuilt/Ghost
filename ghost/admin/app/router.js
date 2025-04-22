@@ -47,6 +47,10 @@ Router.map(function () {
         this.route('new');
         this.route('edit', {path: '/:proposal_id'});
     });
+    
+    this.route('ai-content', function() {
+        // nested routes
+    });
 
     this.route('lexical-editor', {path: 'editor'}, function () {
         this.route('new', {path: ':type'});
