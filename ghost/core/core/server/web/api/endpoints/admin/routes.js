@@ -359,5 +359,11 @@ module.exports = function apiRoutes() {
     // Incoming recommendations
     router.get('/incoming_recommendations', mw.authAdminApi, http(api.incomingRecommendations.browse));
 
+    // AI Content Post
+    router.post('/ai-content-posts', mw.authAdminApi, http(api.aiContentPosts.add));
+    router.get('/ai-content-posts', mw.authAdminApi, http(api.aiContentPosts.browse));
+    router.get('/ai-content-posts/:id', mw.authAdminApi, http(api.aiContentPosts.getSinglePost));
+    router.del('/ai-content-posts', mw.authAdminApi, http(api.aiContentPosts.destroy));
+    router.put('/ai-content-posts/:id', mw.authAdminApi, http(api.aiContentPosts.edit));
     return router;
 };

@@ -3,6 +3,7 @@ const tpl = require('@tryghost/tpl');
 const auth = require('../../../../services/auth');
 const shared = require('../../../shared');
 const apiMw = require('../../middleware');
+const { ai_content_posts, ai_content_post_comments } = require('../../../../data/schema/schema');
 
 const messages = {
     notImplemented: 'The server does not support the functionality required to fulfill the request.'
@@ -48,7 +49,8 @@ const notImplemented = function notImplemented(req, res, next) {
         media: ['POST'],
         db: ['POST'],
         settings: ['GET'],
-        oembed: ['GET']
+        oembed: ['GET'],
+        ai_content_posts: ['GET', 'PUT', 'DELETE', 'POST']
     };
 
     const match = req.url.match(/^\/(\w+)\/?/);

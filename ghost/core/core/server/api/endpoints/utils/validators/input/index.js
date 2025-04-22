@@ -79,5 +79,9 @@ module.exports = {
 
     get mail_events() {
         return require('./mail-events');
+    },
+
+    get aiContentPosts() {
+        return require('./ai-content-posts');
     }
 };

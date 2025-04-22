@@ -1112,5 +1112,35 @@ module.exports = {
         recommendation_id: {type: 'string', maxlength: 24, nullable: false, references: 'recommendations.id', unique: false, cascadeDelete: true},
         member_id: {type: 'string', maxlength: 24, nullable: true, references: 'members.id', unique: false, setNullDelete: true},
         created_at: {type: 'dateTime', nullable: false}
-    }
+    },
+    ai_content_posts: {
+        id: {type: 'string', maxlength: 24, nullable: false, primary: true},
+        title: {type: 'string', maxlength: 2000, nullable: false},
+        html: {type: 'text', maxlength: 1000000000, fieldtype: 'long', nullable: false},
+        social_x: {type: 'text', maxlength: 2000, nullable: true},
+        social_threads: {type: 'text', maxlength: 2000, nullable: true},
+        social_facebook: {type: 'text', maxlength: 2000, nullable: true},
+        social_linkedIn: {type: 'text', maxlength: 2000, nullable: true},
+        social_post: {type: 'text', maxlength: 2000, nullable: true},
+        post_id: { type: 'string', maxlength: 24, nullable: true, references: 'posts.id', constraintName: 'ai_post_post_id_foreign', cascadeDelete: true },
+        label: {type: 'string', maxlength: 191, nullable: true},
+        tags: {type: 'text', maxlength: 5000, nullable: true},
+        note: {type: 'text', maxlength: 1000, nullable: true},
+        favourites: {type: 'boolean', nullable: true},
+        created_by: {type: 'string', maxlength: 24, nullable: false},
+        created_by_info: {type: 'string', maxlength: 10000, nullable: false},
+        created_at: {type: 'dateTime', nullable: false},
+        updated_by: {type: 'string', maxlength: 24, nullable: true},
+        updated_by_info: {type: 'string', maxlength: 10000, nullable: true},
+        updated_at: {type: 'dateTime', nullable: true, index: true},
+        pdf_generated: {type: 'text', maxlength: 10000, nullable: true}
+    },
+    ai_content_post_comments: {
+        id: {type: 'string', maxlength: 24, nullable: false, primary: true},
+        post_id: {type: 'string', maxlength: 24, nullable: false, references: 'ai_content_posts.id', constraintName: 'ai_post_comment_post_id_foreign', cascadeDelete: true},
+        comment: {type: 'text', maxlength: 10000, nullable: false},
+        comment_by: {type: 'string', maxlength: 24, nullable: false},
+        comment_by_info: {type: 'text', maxlength: 10000, nullable: false},
+        comment_at: {type: 'dateTime', nullable: false}
+    }        
 };

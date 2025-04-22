@@ -263,5 +263,9 @@ module.exports = {
 
     get recommendationsPublic() {
         return apiFramework.pipeline(require('./recommendations-public'), localUtils, 'content');
+    },
+
+    get aiContentPosts() {
+        return apiFramework.pipeline(require('./ai-content-posts'), localUtils);
     }
 };
