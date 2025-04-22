@@ -1,0 +1,40 @@
+<section class="gh-canvas gh-canvas-sticky">
+    <GhCanvasHeader class="gh-canvas-header sticky break tablet post-header">
+        <GhCustomViewTitle @title="AI Content" />
+
+        <section class="view-actions">
+            <a href="http://localhost:3000/chat" class="gh-btn gh-btn-primary view-actions-top-row" target="_blank"
+                rel="noopener noreferrer">
+                <span>New Content LLM</span>
+            </a>
+        </section>
+    </GhCanvasHeader>
+    <section class="view-container content-list">
+        {{!-- app/templates/ai-content/index.hbs --}}
+        <section class="gh-main-section">
+            <h2>Generated Content</h2>
+
+            {{#if this.model.length}}
+            <ul class="ai-content-list">
+                {{#each this.model as |post|}}
+                <li class="ai-content-item">
+                    <article>
+                        <div class="post-preview" style="margin-bottom: 1em;">
+                            <strong>ID:</strong> {{post.id}} <br />
+                            <strong>Created:</strong> {{post.createdAt}} <br />
+                            <strong>Updated:</strong> {{post.updatedAt}} <br />
+                            <div class="post-html" style="margin-top: 0.5em;">
+                                {{{post.html}}} {{!-- triple curlies allow rendering HTML safely --}}
+                            </div>
+                        </div>
+                    </article>
+                </li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <p>No AI-generated content found.</p>
+            {{/if}}
+        </section>
+
+    </section>
+</section>
