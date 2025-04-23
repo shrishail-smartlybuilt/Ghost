@@ -225,7 +225,7 @@ body:not(.gh-body-fullscreen) .gh-viewport {
 }
 
 .gh-nav-menu-dropdown .dropdown-menu {
-    top: -324px;
+    top: -180px;
     left: -13px;
     margin: 10px 0 0;
     box-shadow: var(--box-shadow-m);
