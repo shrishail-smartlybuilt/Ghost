@@ -153,7 +153,7 @@ const zapierTemplates = [{
 }, {
     ghostImage: 'assets/img/logos/orb-black-3.png',
     appImage: 'assets/img/patreon.svg',
-    title: 'Connect Patreon to your Ghost membership site',
+    title: 'Connect Patreon to your PraiseCMS membership site',
     url: 'https://zapier.com/webintent/create-zap?template=75801'
 }, {
     ghostImage: 'assets/img/logos/orb-black-4.png',
@@ -173,7 +173,7 @@ const zapierTemplates = [{
 }, {
     ghostImage: 'assets/img/logos/orb-black-1.png',
     appImage: 'assets/img/google-docs.svg',
-    title: 'Send new post drafts from Google Docs to Ghost',
+    title: 'Send new post drafts from Google Docs to PraiseCMS',
     url: 'https://zapier.com/webintent/create-zap?template=50924'
 }, {
     ghostImage: 'assets/img/logos/orb-black-4.png',
@@ -183,7 +183,7 @@ const zapierTemplates = [{
 }, {
     ghostImage: 'assets/img/logos/orb-black-1.png',
     appImage: 'assets/img/mailchimp.svg',
-    title: 'Sync email subscribers in Ghost + Mailchimp',
+    title: 'Sync email subscribers in PraiseCMS + Mailchimp',
     url: 'https://zapier.com/webintent/create-zap?template=359342'
 }];
 
