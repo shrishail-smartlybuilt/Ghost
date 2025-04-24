@@ -121,7 +121,7 @@ const SocialAccounts: React.FC<{ keywords: string[] }> = ({keywords}) => {
                 <TextField
                     error={!!errors.facebook}
                     hint={errors.facebook}
-                    placeholder="https://www.facebook.com/ghost"
+                    placeholder="https://www.facebook.com"
                     title={`URL of your publication's Facebook Page`}
                     value={facebookUrl}
                     onChange={e => handleFacebookChange(e.target.value)}
@@ -129,7 +129,7 @@ const SocialAccounts: React.FC<{ keywords: string[] }> = ({keywords}) => {
                 <TextField
                     error={!!errors.twitter}
                     hint={errors.twitter}
-                    placeholder="https://x.com/ghost"
+                    placeholder="https://x.com"
                     title="URL of your X (formerly Twitter) profile"
                     value={twitterUrl}
                     onChange={e => handleTwitterChange(e.target.value)}

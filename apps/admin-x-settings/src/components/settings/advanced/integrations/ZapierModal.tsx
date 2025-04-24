@@ -79,7 +79,7 @@ const ZapierModal = NiceModal.create(() => {
                         href='https://zapier.com/apps/ghost/integrations?utm_medium=partner_api&utm_source=widget&utm_campaign=Widget'
                         rel='noopener noreferrer'
                         target='_blank'>
-                        View more Ghost integrations powered by <span><Logo className='relative top-[-2px] inline-block h-6' /></span>
+                        View more PraiseCMS integrations powered by <span><Logo className='relative top-[-2px] inline-block h-6' /></span>
                     </a>
                     <Button color='black' label='Close' onClick={() => {
                         modal.remove();

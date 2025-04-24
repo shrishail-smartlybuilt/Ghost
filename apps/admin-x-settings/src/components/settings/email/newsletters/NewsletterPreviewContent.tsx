@@ -190,7 +190,7 @@ const NewsletterPreviewContent: React.FC<{
                             )} style={{borderColor: secondaryBorderColor}}>
                                 <p className="mb-5" style={{color: textColor}}>This is what your content will look like when you send one of your posts as an email newsletter to your subscribers.</p>
                                 <p className="mb-5" style={{color: textColor}}>Over there on the right you&apos;ll see some settings that allow you to customize the look and feel of this template to make it perfectly suited to your brand. Email templates are exceptionally finnicky to make, but we&apos;ve spent a long time optimising this one to make it work beautifully across devices, email clients and content types.</p>
-                                <p className="mb-5" style={{color: textColor}}>So, you can trust that every email you send with Ghost will look great and work well. Just like the rest of your site.</p>
+                                <p className="mb-5" style={{color: textColor}}>So, you can trust that every email you send with PraiseCMS will look great and work well. Just like the rest of your site.</p>
                             </div>
 
                             {/* Feedback */}
@@ -286,14 +286,14 @@ const NewsletterPreviewContent: React.FC<{
                                     <span className="pointer-events-none cursor-auto underline" style={{color: secondaryTextColor}}>Unsubscribe</span>
                                 </div>
 
-                                {showBadge && (
+                                {/* {showBadge && (
                                     <div className="flex flex-col items-center pb-[40px] pt-[10px]">
                                         <a className="pointer-events-none inline-flex cursor-auto items-center px-2 py-1 text-[1.25rem] font-semibold tracking-tight text-grey-900" href="https://ghost.org">
                                             <GhostOrb className="mr-[6px] size-4"/>
                                             <span>Powered by Ghost</span>
                                         </a>
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         </div>
                     </div>

@@ -29,7 +29,7 @@
             <div class="gh-onboarding-item gh-onboarding-item--completed">
                 <Dashboard::Onboarding::Step
                     @icon="rocket"
-                    @title="Start a new Ghost publication"
+                    @title="Start a new publication"
                     @complete={{true}}
                 />
             </div>
@@ -77,7 +77,7 @@
         <a href="#" class="gh-onboarding-explore-dashboard" id="ob-completed" {{on "click" this.onboarding.completeChecklist}}>Explore your dashboard</a>
     {{/if}}
 
-    <p class="gh-onboarding-help">More questions? Check out our <a href="https://ghost.org/help?utm_source=admin&utm_campaign=onboarding" id="ob-help-center" target="_blank" rel="noopener noreferrer">Help Center</a>.</p>
+    {{!-- <p class="gh-onboarding-help">More questions? Check out our <a href="https://ghost.org/help?utm_source=admin&utm_campaign=onboarding" id="ob-help-center" target="_blank" rel="noopener noreferrer">Help Center</a>.</p> --}}
 
     {{#unless this.onboarding.allStepsCompleted}}
         <a href="#" class="gh-onboarding-skip" id="ob-skip" {{on "click" this.onboarding.dismissChecklist}}>Skip onboarding</a>

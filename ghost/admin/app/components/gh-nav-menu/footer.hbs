@@ -50,15 +50,15 @@
                                 <a href="{{this.config.blogUrl}}/" class="dropdown-item" role="menuitem" tabindex="-1" title="Open site in new tab" target="_blank" rel="noopener noreferrer">View site</a>
                             </li>
                             <li class="divider" role="separator"></li>
-                        {{else}}
-                            <li>
+                        {{!-- {{else}} --}}
+                            {{!-- <li>
                                 <button class="dropdown-item" tabindex="-1" data-test-nav="whatsnew" type="button" {{on "click" this.openWhatsNew}}>
                                     What’s new?
                                     {{#if this.whatsNew.hasNew}}
                                         <div class="flex-grow-1 flex justify-end"><span class="dib w2 h2 top-0 right-0 bg-green br-100"></span></div>
                                     {{/if}}
                                 </button>
-                            </li>
+                            </li> --}}
                         {{/if}}
 
                         <li>
@@ -67,7 +67,7 @@
                             </LinkTo>
                         </li>
 
-                        {{#unless this.session.user.isContributor}}
+                        {{!-- {{#unless this.session.user.isContributor}}
                             <li class="divider" role="separator"></li>
                             <li>
                                 <a class="dropdown-item" role="menuitem" tabindex="-1" href="https://ghost.org/help?utm_source=admin&utm_campaign=help" target="_blank" rel="noopener noreferrer">
@@ -94,7 +94,7 @@
                                 {{/each}}
                             {{/if}}
                         <li class="divider" role="separator"></li>
-                        {{/unless}}
+                        {{/unless}} --}}
 
                         <li>
                             <LinkTo @route="signout" class="dropdown-item user-menu-signout" @role="menuitem" tabindex="-1">
