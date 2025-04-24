@@ -60,7 +60,7 @@
                         <LinkTo @route="stats">{{svg-jar "stats-outline"}}Stats</LinkTo>
                     </li>
                 {{/if}}
-                {{#if (gh-user-can-admin this.session.user)}}
+                {{!-- {{#if (gh-user-can-admin this.session.user)}}
                     {{#if (not (and (feature "ActivityPub") this.session.user.isAdmin))}}
                         <li class="relative">
                             <a href="javascript:void(0)" class={{if this.explore.exploreWindowOpen "active" }} {{on "click" (fn
@@ -69,7 +69,7 @@
                             </a>
                         </li>
                     {{/if}}
-                {{/if}}
+                {{/if}} --}}
             </ul>
             <ul class="gh-nav-list gh-nav-manage">
                 <li class="gh-nav-list-new gh-nav-list-posts relative">

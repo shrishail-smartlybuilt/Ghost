@@ -10,6 +10,7 @@ export default class ProposalsNewController extends Controller {
   @tracked activeTab = 'references';
   @tracked rightNavWidth = 0;
   @tracked isRightNavOpen = false;
+  @tracked rightNavContentType = null; // 'organizationSelector' or 'suggestions'
 
    // In your component/controller
 @tracked enableSERP = true;
@@ -117,6 +118,15 @@ addInspiredDetail() {
 addCompetitorDetail() {
   this.competitorDetails = [...this.competitorDetails, ''];
 }
+@action
+removeInspiredDetail(index) {
+  this.inspiredDetails = this.inspiredDetails.filter((_, i) => i !== index);
+}
+
+@action
+removeCompetitorDetail(index) {
+  this.competitorDetails = this.competitorDetails.filter((_, i) => i !== index);
+}
 
 
 @action
@@ -170,34 +180,34 @@ selectOrganization(org) {
       
     ];
     
-  constructor() {
-    super(...arguments);
-    // Initial calculation (optional, in case the right nav is open on page load)
-    this.calculateRightNavWidth();
+  // constructor() {
+  //   super(...arguments);
+  //   // Initial calculation (optional, in case the right nav is open on page load)
+  //   this.calculateRightNavWidth();
     
-    // Listen for window resizing to recalculate right nav width
-    window.addEventListener('resize', this.calculateRightNavWidth);
-  }
+  //   // Listen for window resizing to recalculate right nav width
+  //   window.addEventListener('resize', this.calculateRightNavWidth);
+  // }
 
-  willDestroy() {
-    // Clean up the event listener when the component is destroyed
-    window.removeEventListener('resize', this.calculateRightNavWidth);
-  }
+  // willDestroy() {
+  //   // Clean up the event listener when the component is destroyed
+  //   window.removeEventListener('resize', this.calculateRightNavWidth);
+  // }
 
   // Calculate the right nav width
-  calculateRightNavWidth() {
-    const rightNav = document.querySelector('.right-nav');
-    if (rightNav && this.isRightNavOpen) {
-      this.rightNavWidth = rightNav.offsetWidth;
-    } else {
-      this.rightNavWidth = 0;
-    }
-  }
+  // calculateRightNavWidth() {
+  //   const rightNav = document.querySelector('.right-nav');
+  //   if (rightNav && this.isRightNavOpen) {
+  //     this.rightNavWidth = rightNav.offsetWidth;
+  //   } else {
+  //     this.rightNavWidth = 0;
+  //   }
+  // }
 
-  // Getter to determine the bottom section width based on right nav state
-  get bottomSectionWidth() {
-    return this.isRightNavOpen ? `calc(100% - ${this.rightNavWidth}px)` : '100%';
-  }
+  // // Getter to determine the bottom section width based on right nav state
+  // get bottomSectionWidth() {
+  //   return this.isRightNavOpen ? `calc(100% - ${this.rightNavWidth}px)` : '100%';
+  // }
 
   @action
   openRightNav(contentType) {
@@ -223,11 +233,11 @@ selectOrganization(org) {
   }
 
   @action
-nextStep() {
-  if (this.currentStep < 3) { // 2 is the last step index if you have 3 steps
-    this.currentStep++;
+  nextStep() {
+    if (this.currentStep < 3) { // 2 is the last step index if you have 3 steps
+      this.currentStep++;
+    }
   }
-}
 
 @action
 prevStep() {
