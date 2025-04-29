@@ -537,7 +537,7 @@
                     </button>
 
                     <div class="modal-box-body widget-three-modal-box">
-                        <div class="p-6 w-full-lg">
+                        <div class="p-6 w-full-lg w-full">
                             <div class="text-center mb-6">
                                 <div class="text-center mb-4">
                                     <button class="gh-btn gh-btn-primary rounded-full px-6 py-1 text-sm">
@@ -548,7 +548,7 @@
                                 <p class="text-sm text-gray-500">Enter any inspirations, PDFs, and select</p>
                             </div>
 
-                            <div class="list-item-section lg-flex-column rounded-lg p-5 shadow-md">
+                            <div class="list-item-section justify-between lg-flex-column rounded-lg p-5 shadow-md">
                                 <div>
                                     <div class="flex justify-between list-item-content  items-start mb-2">
                                         <div class="flex list-icon-section items-center gap-2 text-sm text-gray-600">
@@ -580,9 +580,9 @@
                                                 </g>
                                             </svg>
                                         </div>
-                                        <div class="flex list-item-content-div justify-between items-center">
+                                        <div class="flex list-item-content-div gap-2 justify-between items-center">
                                             <div>
-                                                <div class="flex items-center gap-2 text-sm text-black font-bold">Action Plan Library Overview</div> 
+                                                <div class="flex items-center gap-2 mb-1 text-black font-bold">Action Plan Library Overview</div> 
                                                 <p class="text-sm text-gray-500 mb-4">
                                                     Action Plan Library If you have been following the tips since last year,
                                                     you may have noticed that we are going through the noticed that we are going through the
@@ -615,43 +615,14 @@
                                         </button>
                                     </div>
 
-                                    <div class="flex justify-between list-item-social-container gap-1 items-center border-t pt-3">
-                                        {{!-- <div class="flex gap-3">
-                                            <button class="bg-gray-100 text-black px-3 py-1 rounded">✗</button>
-                                            <button class="bg-gray-100 text-black px-3 py-1 rounded">Threads</button>
-                                            <button class="bg-gray-100 text-black px-3 py-1 rounded">Facebook</button>
-                                            <button class="bg-gray-100 text-black px-3 py-1 rounded">LinkedIn</button>
-                                            <button class="bg-gray-100 text-black px-3 py-1 rounded">Post</button>
-                                        </div> --}}
-                                        <div class="flex justify-start flex-wrap gap-1 items-center border-t pt-3">
-                                            {{#each this.socialPlatforms as |platform|}}
-                                                <div class="flex flex-col items-center">
-                                                    <button
-                                                    class="social-icon-btn w-16 h-16 rounded-lg border-gray-300 flex items-center justify-center relative
-                                                    {{if platform.selected 'text-white' 'bg-gray-100'}}"
-                                                    {{on "click" (fn this.togglePlatform platform.name)}}
-                                                    >
-                                                    {{!-- {{#if platform.selected}}
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="green-check-social absolute top-1 right-1 w-4 h-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clip-rule="evenodd" />
-                                                        </svg>
-                                                        {{else}}
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="gray-check-social absolute top-1 right-1 w-4 h-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clip-rule="evenodd" />
-                                                            </svg>
-                                                    {{/if}} --}}
+                                    <div class="flex justify-between list-item-social-container gap-2 items-center border-t pt-3">
+                                       
+                                        <div class="flex justify-start flex-wrap gap-3 items-center border-t pt-3">
 
-                                                        {{! Render icon, which could be an SVG string or fallback image }}
-                                                        {{#if (has-block)}}
-                                                            {{yield}}
-                                                        {{else}}
-                                                            {{! If platform.icon is a string containing inline SVG, render it using triple curlies }}
-                                                            {{{platform.icon}}}
-                                                        {{/if}}
-                                                        </button>
-                                                        <span class="text-xs font-bold text-black mt-1">{{platform.label}}</span>
-                                                </div>
-                                            {{/each}}
+                                            <SocialPlatformSelector
+                                            @platforms={{this.socialPlatforms}}
+                                            @onToggle={{this.togglePlatform}}
+                                            />
                                         </div>
                                         
                                         <div class="flex gap-2 generated-ctas">
@@ -831,24 +802,35 @@
                                 </label> --}}
                             </div>
                             <div class="space-y-3 generate-addsuggestion-right-nav">
+                                {{!-- <p>{{this.choices.length}} choices loaded</p> --}}
                                 {{#each this.choices as |choice index|}}
                                     <div class="generate-suggestion-list xs-flex-column p-3 gap-2 flex justify-between items-start hover:shadow-md transition relative bg-white {{if choice.selected 'ring-2 ring-green-500'}}">
                                         <label class="flex items-start gap-2 cursor-pointer">
                                             <input class="right-nav-select-checkbox" type="checkbox" checked={{choice.selected}} {{on "change" (fn this.toggleChoice index)}} />
                                             <div>
                                             <p class="mb-0 font-bold">{{choice.title}}</p>
-                                            <p class="text-sm text-gray-600">{{choice.description}}</p>
+                                            <p class="text-sm text-gray-600 description-wrapper">
+                                            {{choice.description}}
+                                            </p>
+
+                                            {{!-- <button class="text-blue-600 text-xs" {{on "click" (fn this.toggleDescription index)}}>
+                                            {{#if (is-expanded this.expandedDescriptions index)}}
+                                                Read less
+                                            {{else}}
+                                                Read more
+                                            {{/if}}
+                                            </button> --}}
                                             </div>
                                         </label>
 
                                         {{#if choice.selected}}
-                                            <div class="add-new-details-cta absolute top-3 right-3 flex items-center gap-1 text-blackfont-bold px-2 py-1 rounded">
+                                            <div class="add-new-details-cta save-draft-cta-label absolute top-3 right-3 flex items-center gap-1 text-blackfont-bold px-2 py-1 rounded">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="green-check-social absolute top-1 right-1 w-4 h-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clip-rule="evenodd" />
                                                 </svg>
-                                                Save Draft
+                                                <div class="tooltip">Save Draft</div> <!-- This will now appear on hover -->
                                             </div>
-                                        {{/if}}
+                                            {{/if}}
                                     </div>
                                 {{/each}}
                             </div>

@@ -1,0 +1,13 @@
+<div class="flex used-platforms-section justify-start flex-wrap gap-3 items-center border-t pt-3">
+  {{#each this.platforms as |platform|}}
+    <div class="flex flex-col items-center">
+      <button
+        class="social-icon-btn w-16 h-16 rounded-lg border-gray-300 flex items-center justify-center relative {{if platform.selected 'text-white' 'bg-gray-100'}}"
+        {{on "click" (fn this.togglePlatform platform.name)}}
+      >
+        {{{platform.icon}}}
+      </button>
+      <span class="text-xs font-bold text-black mt-1">{{platform.label}}</span>
+    </div>
+  {{/each}}
+</div>

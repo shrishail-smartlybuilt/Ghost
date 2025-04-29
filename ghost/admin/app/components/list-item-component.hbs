@@ -1,0 +1,162 @@
+{{!-- <div class="flex used-platforms-section justify-start flex-wrap gap-3 items-center border-t pt-3">
+  {{#if this.hasItems}}
+    {{#each @items as |item|}}
+        <div class="list-item-section justify-between lg-flex-column rounded-lg p-5 shadow-md">
+            <div>
+                <div class="flex justify-between list-item-content  items-start mb-2">
+                    <div class="flex list-icon-section items-center gap-2 text-sm text-gray-600">
+                        {{{item.noteIcon}}}
+                        {{{item.heartIcon}}}
+                        {{{item.newIcon}}}
+                    </div>
+                    <div class="flex list-item-content-div gap-2 justify-between items-center">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1 text-black font-bold">{{item.title}}</div> 
+                            <p class="text-sm text-gray-500 mb-4">
+                            {{item.description}}
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap w-full justify-start gap-2 mb-4">
+                            <span class="tags-label text-xs px-2 py-1 bg-yellow text-gray-500 rounded">Tag Tag One</span>
+                            <span class="tags-label text-xs px-2 py-1 bg-blue text-gray-500 rounded">Tag Tag Two</span>
+                            <span class="tags-label text-xs px-2 py-1 bg-red text-gray-500 rounded">Tag Tag Three</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+
+                
+            </div>
+            
+            <div>
+                <div class="flex flex-wrap justify-end justify-lg-start items-center gap-2 text-xs text-gray-500 mb-4">
+                    <span class="idea-label">Ideas</span>
+                    <span>By {{item.author}} — {{item.createdDate}} </span>
+                    <button class="menu-cirlce-div list-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                            <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                <path d="M 45 0 C 20.147 0 0 20.147 0 45 c 0 24.853 20.147 45 45 45 s 45 -20.147 45 -45 C 90 20.147 69.853 0 45 0 z M 67 64.013 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 64.013 67 64.013 z M 67 52.671 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 52.671 67 52.671 z M 67 41.329 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 41.329 67 41.329 z M 67 29.987 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 29.987 67 29.987 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="flex justify-between list-item-social-container gap-2 items-center border-t pt-3">
+                
+                    <div class="flex justify-start flex-wrap gap-3 items-center border-t pt-3">
+
+                        <SocialPlatformSelector
+                        @platforms={{this.socialPlatforms}}
+                        @onToggle={{this.togglePlatform}}
+                        />
+                    </div>
+                    
+                    <div class="flex gap-2 generated-ctas">
+                        <button class="bg-black text-white px-3 py-1 rounded">Convert To Post</button>
+                        <button class="bg-black gh-btn-primary text-white px-3 py-1 rounded">Generate Tip</button>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    {{/each}}
+    <p>No items found.</p>
+  {{/if}}
+</div> --}}
+<div class="flex used-platforms-section justify-start flex-wrap gap-3 items-center border-t pt-3">
+  
+        <div class="list-item-section justify-between lg-flex-column rounded-lg p-5 shadow-md">
+            <div>
+                <div class="flex justify-between list-item-content  items-start mb-2">
+                    <div class="flex list-icon-section items-center gap-2 text-sm text-gray-600">
+                        {{#if this.item.isNew}}
+                            <span class="w-5 h-5" title="New">{{{this.item.icons.new}}}</span>
+                        {{/if}}
+
+                        {{#if this.item.isFavorite}}
+                            <span class="w-5 h-5" title="Favorite">{{{this.item.icons.heart}}}</span>
+                        {{/if}}
+
+                        <span class="w-5 h-5" title="Note">{{{this.item.icons.note}}}</span>
+                    </div>
+                    <div class="flex list-item-content-div gap-2 justify-between items-center">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1 text-black font-bold">{{this.item.title}}</div> 
+                            <p class="text-sm text-gray-500 mb-4">
+                            {{this.item.description}}
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap w-full justify-start gap-2 mb-4">
+                            <span class="tags-label text-xs px-2 py-1 bg-yellow text-gray-500 rounded">Tag Tag One</span>
+                            <span class="tags-label text-xs px-2 py-1 bg-blue text-gray-500 rounded">Tag Tag Two</span>
+                            <span class="tags-label text-xs px-2 py-1 bg-red text-gray-500 rounded">Tag Tag Three</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+
+                
+            </div>
+            
+            <div>
+                <div class="flex flex-wrap justify-end justify-lg-start items-center gap-2 text-xs text-gray-500 mb-4">
+                    <span class="idea-label">Ideas</span>
+                    <span>By {{this.item.author}} — {{this.item.createdDate}} </span>
+                    <button class="menu-cirlce-div list-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                            <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                <path d="M 45 0 C 20.147 0 0 20.147 0 45 c 0 24.853 20.147 45 45 45 s 45 -20.147 45 -45 C 90 20.147 69.853 0 45 0 z M 67 64.013 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 64.013 67 64.013 z M 67 52.671 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 52.671 67 52.671 z M 67 41.329 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 41.329 67 41.329 z M 67 29.987 H 23 c -1.104 0 -2 -0.896 -2 -2 s 0.896 -2 2 -2 h 44 c 1.104 0 2 0.896 2 2 S 68.104 29.987 67 29.987 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="flex justify-between list-item-social-container gap-2 items-center border-t pt-3">
+                
+                    <div class="flex justify-start flex-wrap gap-3 items-center border-t pt-3">
+
+                        <SocialPlatformSelector
+                        @platforms={{this.socialPlatforms}}
+                        @onToggle={{this.togglePlatform}}
+                        />
+                    </div>
+                    
+                    <div class="flex gap-2 generated-ctas">
+                        <button class="bg-black text-white px-3 py-1 rounded">Convert To Post</button>
+                        <button class="bg-black gh-btn-primary text-white px-3 py-1 rounded">Generate Tip</button>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+</div>
+{{! app/components/list-item-component.hbs }}
+
+{{!-- <div class="p-4 rounded-lg shadow-md bg-white hover:bg-gray-50 transition">
+  <div class="flex justify-between items-start">
+    <div>
+      <h3 class="text-lg font-semibold">{{this.item.title}}</h3>
+      <p class="text-sm text-gray-600">{{this.item.description}}</p>
+      <p class="text-xs text-gray-400 mt-1">
+        By {{this.item.author}} on {{this.item.createdDate}}
+      </p>
+    </div>
+    <div class="flex space-x-2">
+    {{#if this.item.isNew}}
+        <span class="w-5 h-5" title="New">{{{this.item.icons.new}}}</span>
+    {{/if}}
+
+    {{#if this.item.isFavorite}}
+        <span class="w-5 h-5" title="Favorite">{{{this.item.icons.heart}}}</span>
+    {{/if}}
+
+    <span class="w-5 h-5" title="Note">{{{this.item.icons.note}}}</span>
+    </div>
+  </div>
+</div> --}}

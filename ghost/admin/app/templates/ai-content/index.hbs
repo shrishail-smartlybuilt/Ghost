@@ -1,40 +1,51 @@
-<section class="gh-canvas gh-canvas-sticky">
-    <GhCanvasHeader class="gh-canvas-header sticky break tablet post-header">
-        <GhCustomViewTitle @title="AI Content" />
+<section class="gh-canvas gh-canvas-sticky"> 
+  <GhCanvasHeader class="gh-canvas-header sticky break tablet post-header">
+    <GhCustomViewTitle @title="Ideas" />
 
-        <section class="view-actions">
-            <a href="http://localhost:3000/chat" class="gh-btn gh-btn-primary view-actions-top-row" target="_blank"
-                rel="noopener noreferrer">
-                <span>New Content LLM</span>
-            </a>
-        </section>
-    </GhCanvasHeader>
-    <section class="view-container content-list">
-        {{!-- app/templates/ai-content/index.hbs --}}
-        <section class="gh-main-section">
-            <h2>Generated Content</h2>
-
-            {{#if this.model.length}}
-            <ul class="ai-content-list">
-                {{#each this.model as |post|}}
-                <li class="ai-content-item">
-                    <article>
-                        <div class="post-preview" style="margin-bottom: 1em;">
-                            <strong>ID:</strong> {{post.id}} <br />
-                            <strong>Created:</strong> {{post.createdAt}} <br />
-                            <strong>Updated:</strong> {{post.updatedAt}} <br />
-                            <div class="post-html" style="margin-top: 0.5em;">
-                                {{{post.html}}} {{!-- triple curlies allow rendering HTML safely --}}
-                            </div>
-                        </div>
-                    </article>
-                </li>
-                {{/each}}
-            </ul>
-            {{else}}
-                <p>No AI-generated content found.</p>
-            {{/if}}
-        </section>
-
+    <section class="view-actions flex gap-2">
+      <button class="bg-black text-white px-4 py-2 text-sm rounded hover:bg-gray-900">New Content</button>
+      <button class="bg-black text-white px-4 py-2 text-sm rounded hover:bg-gray-900">Start Ideating</button>
+      <button class="bg-black text-white px-4 py-2 text-sm rounded hover:bg-gray-900">Bulk Generate</button>
     </section>
+  </GhCanvasHeader>
+
+  <section class="view-container content-list">
+    <!-- Tab Navigation -->
+    <div class="flex border-b mt-2 mb-4 overflow-x-auto whitespace-nowrap min-w-max sm:gap-8 sm:px-6 gap-4 px-4">
+      {{#each this.tabItems as |tab|}}
+        <button
+          class="flex items-center gap-2 text-sm font-semibold py-2 px-3 border-b-2 transition whitespace-nowrap
+          {{if (eq this.activeTab tab.id) 'border-black text-black' 'border-transparent text-gray-500'}}"
+          {{on "click" (fn this.setTab tab.id)}}
+        >
+          <img width="18" height="18" src="{{tab.icon}}" alt="tab-icon"/>
+          {{tab.label}}
+        </button>
+      {{/each}}
+
+      <!-- Filters -->
+      <div class="flex gap-2 ml-auto">
+        <select class="border px-2 py-1 text-sm rounded"> <option>All Content</option> </select>
+        <select class="border px-2 py-1 text-sm rounded"> <option>All Tags</option> </select>
+        <select class="border px-2 py-1 text-sm rounded"> <option>All Priorities</option> </select>
+        <select class="border px-2 py-1 text-sm rounded"> <option>Sort By</option> </select>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="gh-main-section">
+      
+      <h2 class="text-lg font-semibold mb-4">{{this.activeTabLabel}} Content</h2>
+
+        <div class="space-y-4">
+            {{#if this.hasItems}}
+               {{#each this.items as |item|}}
+                <ListItemComponent @item={{item}} />
+                {{/each}}
+            {{else}}
+                <p class="text-gray-500">No items to display.</p>
+            {{/if}}
+            </div>
+    </section>
+  </section>
 </section>

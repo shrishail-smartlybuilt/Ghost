@@ -1,0 +1,9 @@
+.used-platforms-section .social-icon-btn {
+    background-color: transparent;
+}
+.used-platforms-section .social-icon-btn {
+    width: 60px;
+    padding: 10px 20px;
+    background-color: #eee;
+    border-radius: 10px;
+}

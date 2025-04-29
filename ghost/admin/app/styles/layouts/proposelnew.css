@@ -393,7 +393,7 @@ svg.gray-check-social{
     fill:#5c5c5c;
 }
 .widget-three-modal-box{
-    width: 85%;
+    width: 70%;
 }
 .new-tag-icon{
     transform: rotate(45deg);
@@ -514,14 +514,15 @@ input[type="checkbox"].peer:checked + div {
 .mt-8{
     margin-top: 80px;
 }
+
 .gap-3{
-    gap: 30px;
+    gap: 30px!important;
 }
 .gap-1{
-    gap: 10px;
+    gap: 10px!important;
 }
 .gap-2{
-    gap: 20px;
+    gap: 20px!important;
 }
 .gap-5{
     gap: 50px;
@@ -574,6 +575,70 @@ input[type="checkbox"].peer:checked + div {
 .ref-delete-btn svg:hover path{
     fill: #64c53a;
 }
+/* read more and read less feature */
+.description-wrapper {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    max-width: 100%;
+  }
+  
+  .description-wrapper.expanded {
+    -webkit-line-clamp: unset;
+    max-height: none;
+  }
+  
+  .read-toggle {
+    color: #10b981; /* Tailwind green-500 */
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    display: inline-block;
+  }
+.add-new-details-cta:hover{
+    color: #64c53a;
+}  
+.add-new-details-cta.save-draft-cta-label {
+    position: relative;
+  }
+  
+  .save-draft-cta-label .tooltip {
+    position: absolute;
+    top: 50%;
+    right: 122%;
+    transform: translateY(-50%);
+    background-color: #1f2937; /* dark gray */
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 10;
+  }
+  
+  .save-draft-cta-label .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background-color: #1f2937;
+    z-index: -1;
+  }
+  
+  .generate-suggestion-list:hover .save-draft-cta-label .tooltip {
+    opacity: 1;
+  }
+  
 .right-nav-main .right-nav-panel{
     width: 440px;
     box-shadow: 0px 4px 10px rgb(0 0 0 / 27%);
@@ -586,9 +651,13 @@ input[type="checkbox"].peer:checked + div {
     font-size: 13px;
     font-weight: 600;
 }
+.generate-addsuggestion-right-nav {
+    background: white;
+    z-index: 9999;
+  }
 .generate-addsuggestion-right-nav .add-new-details-cta{
     position: relative;
-    width: 120px;
+    width: 40px;
     gap: 0;
     right: 0;
     justify-content: end;
@@ -600,7 +669,7 @@ input[type="checkbox"].peer:checked + div {
     position: relative;
 }
 .generate-addsuggestion-right-nav label{
-    max-width: 285px;
+    max-width: 350px;
     width: 100%;
 }
 .right-nav-select-checkbox{

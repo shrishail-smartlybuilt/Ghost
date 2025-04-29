@@ -23,7 +23,7 @@ export default class ProposalsNewController extends Controller {
 @tracked inspiredDetails = [''];
 @tracked competitorDetails = [''];
 
-
+// @tracked expandedDescriptions = new Set();
 
 @tracked uploadedFiles = [
   { name: "Case_Study_292.pdf", status: "File Removed (Task Completed)" },
@@ -136,7 +136,24 @@ selectOrganization(org) {
   this.set('isRightNavOpen', false);
 }
 
-  
+
+
+@tracked expandedDescriptions = new Set();
+
+  toggleDescription(index) {
+    if (this.expandedDescriptions.has(index)) {
+      this.expandedDescriptions.delete(index);
+    } else {
+      this.expandedDescriptions.add(index);
+    }
+    // Trigger reactivity
+    this.expandedDescriptions = new Set(this.expandedDescriptions);
+  }
+
+  getExpanded(index) {
+    return this.expandedDescriptions.has(index);
+  }
+
     // 👥 Social platform selection
     @tracked socialPlatforms = [
       { name: "x",

@@ -46,6 +46,7 @@
 @import "components/pintura.css";
 @import "components/theme-errors.css";
 @import "components/modal-about.css";
+@import "components/social-platform-selector.css";
 
 
 /* Layouts
@@ -73,6 +74,7 @@
 @import "layouts/mentions.css";
 @import "layouts/migrate.css";
 @import "layouts/stats.css";
+
 
 
 /* ---------------------------✈️----------------------------- */
