@@ -1,9 +1,20 @@
+.list-item-social-container {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
 .used-platforms-section .social-icon-btn {
     background-color: transparent;
 }
 .used-platforms-section .social-icon-btn {
-    width: 60px;
-    padding: 10px 20px;
+    width: 40px;
+    padding: 5px;
+    border: 1px solid #fff;
     background-color: #eee;
     border-radius: 10px;
+}
+
+.used-platforms-section .social-icon-btn:hover {
+    border: 1px solid #ccc;
 }

@@ -1,53 +1,44 @@
 import Controller from '@ember/controller';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
-import { htmlSafe } from '@ember/template';
+import fetch from 'fetch';
+import {action} from '@ember/object';
+import {htmlSafe} from '@ember/template';
+import {tracked} from '@glimmer/tracking';
 
 export default class AiContentController extends Controller {
-  @tracked activeTab = 'posted';
+  @tracked activeTab = 'content';
 
   get tabItems() {
-    return [
-      { 
-        id: 'posted',
-        label: 'Posted',
-        icon: 'https://img.icons8.com/material-rounded/24/ingredients-list.png' 
-      },
-      { 
-        id: 'roadmap', 
-        label: 'Author Roadmap',
-        icon: 'https://img.icons8.com/material-rounded/24/ingredients-list.png'
-      },
-      { 
-        id: 'notes', 
-        label: 'Notes',
-        icon: 'https://img.icons8.com/material-rounded/24/ingredients-list.png'
-      },
-      { 
-        id: 'plan', 
-        label: 'Plan',
-        icon: 'https://img.icons8.com/material-rounded/24/ingredients-list.png' 
-      }
-    ];
+      return [
+          {
+              id: 'content',
+              label: 'Content',
+              icon: 'https://img.icons8.com/material-rounded/24/ingredients-list.png'
+          },
+          {
+              id: 'notes',
+              label: 'Notes',
+              icon: 'https://img.icons8.com/material-rounded/24/ingredients-list.png'
+          },
+          {
+              id: 'archive',
+              label: 'Archive',
+              icon: 'https://img.icons8.com/material-rounded/24/ingredients-list.png'
+          }
+      ];
   }
 
-  // Set selected tab
   @action
   setTab(tabId) {
-    this.activeTab = tabId;
+      this.activeTab = tabId;
   }
 
-  // Label helper
   get activeTabLabel() {
-    return this.tabItems.find(tab => tab.id === this.activeTab)?.label ?? '';
+      return this.tabItems.find(tab => tab.id === this.activeTab)?.label ?? '';
   }
 
-  
-  
-   
-   get items() {
-    const icons = {
-      note: htmlSafe(`<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+  get items() {
+      const icons = {
+          note: htmlSafe(`<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
                   <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
                       <path d="M 38.069 88 H 7.943 c -3.153 0 -5.719 -2.565 -5.719 -5.719 V 7.719 C 2.225 4.565 4.79 2 7.943 2 h 56.725 c 3.153 0 5.719 2.565 5.719 5.719 V 16.8 c 0 0.552 0.447 1 1 1 s 1 -0.448 1 -1 V 7.719 C 72.387 3.462 68.924 0 64.668 0 H 7.943 C 3.687 0 0.225 3.462 0.225 7.719 v 74.563 C 0.225 86.537 3.687 90 7.943 90 h 30.126 c 0.552 0 1 -0.447 1 -1 S 38.622 88 38.069 88 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
                       <path d="M 55.111 15.8 H 17.5 c -0.552 0 -1 0.448 -1 1 s 0.448 1 1 1 h 37.611 c 0.553 0 1 -0.448 1 -1 S 55.664 15.8 55.111 15.8 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
@@ -62,7 +53,7 @@ export default class AiContentController extends Controller {
                                   <path d="M 45 84.334 L 6.802 46.136 C 2.416 41.75 0 35.918 0 29.716 c 0 -6.203 2.416 -12.034 6.802 -16.42 c 4.386 -4.386 10.217 -6.802 16.42 -6.802 c 6.203 0 12.034 2.416 16.42 6.802 L 45 18.654 l 5.358 -5.358 c 4.386 -4.386 10.218 -6.802 16.42 -6.802 c 6.203 0 12.034 2.416 16.42 6.802 l 0 0 l 0 0 C 87.585 17.682 90 23.513 90 29.716 c 0 6.203 -2.415 12.034 -6.802 16.42 L 45 84.334 z M 23.222 10.494 c -5.134 0 -9.961 2 -13.592 5.63 S 4 24.582 4 29.716 s 2 9.961 5.63 13.592 L 45 78.678 l 35.37 -35.37 C 84.001 39.677 86 34.85 86 29.716 s -1.999 -9.961 -5.63 -13.592 l 0 0 c -3.631 -3.63 -8.457 -5.63 -13.592 -5.63 c -5.134 0 -9.961 2 -13.592 5.63 L 45 24.311 l -8.187 -8.187 C 33.183 12.494 28.356 10.494 23.222 10.494 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
                               </g>
                           </svg>`),
-          new:htmlSafe( `<svg class="list-icon new-tag-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+          new: htmlSafe(`<svg class="list-icon new-tag-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
                               <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
                                   <path d="M 89.941 25.767 L 88.703 12.89 C 88.113 6.748 83.252 1.887 77.11 1.297 L 64.233 0.059 c -3.83 -0.368 -7.623 0.994 -10.344 3.715 L 2.714 54.948 c -3.619 3.619 -3.619 9.487 0 13.107 l 19.231 19.231 c 3.619 3.619 9.487 3.619 13.107 0 l 51.174 -51.174 C 88.946 33.391 90.309 29.597 89.941 25.767 z M 80.103 16.319 c -1.773 1.773 -4.648 1.773 -6.422 0 s -1.773 -4.648 0 -6.422 s 4.648 -1.773 6.422 0 S 81.876 14.545 80.103 16.319 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(234,73,73); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
                                   <path d="M 23.487 51.07 c -0.818 -0.818 -2.143 -0.818 -2.96 0 c -0.818 0.818 -0.818 2.142 0 2.96 l 10.672 10.673 l -19.41 -3.609 c -0.903 -0.173 -1.807 0.271 -2.235 1.082 c -0.427 0.811 -0.276 1.807 0.372 2.455 L 25.37 80.073 c 0.408 0.409 0.944 0.613 1.48 0.613 s 1.072 -0.204 1.48 -0.613 c 0.818 -0.818 0.818 -2.142 0 -2.96 L 17.657 66.441 l 19.41 3.609 c 0.905 0.172 1.808 -0.272 2.235 -1.082 c 0.427 -0.811 0.276 -1.807 -0.372 -2.455 L 23.487 51.07 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
@@ -70,69 +61,102 @@ export default class AiContentController extends Controller {
                                   <path d="M 73.928 32.086 l -12.407 -18.48 c -0.644 -0.96 -1.942 -1.217 -2.904 -0.571 c -0.96 0.644 -1.215 1.945 -0.57 2.904 l 9.017 13.43 l -10.442 -3.421 c -0.747 -0.245 -1.574 -0.051 -2.132 0.509 c -0.558 0.557 -0.755 1.382 -0.509 2.131 l 3.421 10.442 l -13.43 -9.017 c -0.96 -0.644 -2.26 -0.388 -2.904 0.571 c -0.644 0.96 -0.388 2.26 0.571 2.904 l 18.479 12.406 c 0.354 0.237 0.76 0.356 1.167 0.356 c 0.446 -0.001 0.891 -0.143 1.263 -0.425 c 0.712 -0.54 1.004 -1.472 0.726 -2.32 l -4.028 -12.293 l 12.293 4.028 c 0.847 0.278 1.78 -0.014 2.321 -0.725 C 74.398 33.804 74.427 32.827 73.928 32.086 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
                               </g>
                           </svg>`)
-    };
-    const defaultIcons = {
-      note: icons.note,
-      heart: icons.heart,
-      new: icons.new
-    };
-  
-    const allItems = {
-      posted: [
-        {
-          title: 'Welcome Email Series',
-          description: 'Draft for onboarding campaign.',
-          author: 'Jane Doe',
-          createdDate: '2025-04-22',
-          icons: defaultIcons,
-          isNew: true,
-          isFavorite: true,
-          isNote: true
-        },
-        {
-          title: 'Newsletter Ideas',
-          description: 'Topics for May newsletters.',
-          author: 'John Smith',
-          createdDate: '2025-04-21',
-          icons: defaultIcons,
-          isNew: true,
-          isFavorite: true,
-          isNote: true
-        }
-      ],
-      roadmap: [
-        {
-          title: 'Summer Content Plan',
-          description: 'Outline of blog posts from June to August.',
-          author: 'Jane Doe',
-          createdDate: '2025-04-20',
-          icons: defaultIcons,
-          isNew: true,
-          isFavorite: true,
-          isNote: true
-        }
-      ],
-      notes: [],
-      plan: [
-        {
-          title: 'Campaign Timeline',
-          description: 'Marketing milestones for Q2.',
-          author: 'Alex Kim',
-          createdDate: '2025-04-18',
-          icons: defaultIcons,
-          isNew: true,
-          isFavorite: true,
-          isNote: true
-        }
-      ]
-    };
-  
-    return allItems[this.activeTab] || [];
+      };
+      const defaultIcons = {
+          note: icons.note,
+          heart: icons.heart,
+          new: icons.new
+      };
+
+      const allItems = {
+          posted: [
+              {
+                  title: 'Welcome Email Series',
+                  description: 'Draft for onboarding campaign.',
+                  author: 'Jane Doe',
+                  createdDate: '2025-04-22',
+                  icons: defaultIcons,
+                  isNew: true,
+                  isFavorite: true,
+                  isNote: true
+              },
+              {
+                  title: 'Newsletter Ideas',
+                  description: 'Topics for May newsletters.',
+                  author: 'John Smith',
+                  createdDate: '2025-04-21',
+                  icons: defaultIcons,
+                  isNew: true,
+                  isFavorite: true,
+                  isNote: true
+              }
+          ],
+          roadmap: [
+              {
+                  title: 'Summer Content Plan',
+                  description: 'Outline of blog posts from June to August.',
+                  author: 'Jane Doe',
+                  createdDate: '2025-04-20',
+                  icons: defaultIcons,
+                  isNew: true,
+                  isFavorite: true,
+                  isNote: true
+              }
+          ],
+          notes: [],
+          plan: [
+              {
+                  title: 'Campaign Timeline',
+                  description: 'Marketing milestones for Q2.',
+                  author: 'Alex Kim',
+                  createdDate: '2025-04-18',
+                  icons: defaultIcons,
+                  isNew: true,
+                  isFavorite: true,
+                  isNote: true
+              }
+          ]
+      };
+
+      return allItems[this.activeTab] || [];
   }
-  
+
   get hasItems() {
-    return this.items.length > 0;
+      return this.items.length > 0;
   }
-  
- 
+
+  @action
+  async getList() {
+      const url = 'https://frostsa2.ed1.jacktrade.xyz/api/v2/business-locations';
+      const apiKey = 'j7DFV7m64WR9q2MctqtyQTCogTYHVIHv21kulYjqoq7wKKj8vB7BFsXSIBIUHm7Z';
+
+      const notePayload = {
+          customer_id: 19,
+          body: '<div>ques 121</div>',
+          type: 'post',
+          mdl_id: '19',
+          mdl: 10,
+          labels: [],
+          entity_id: '66559f72c090606ac36cdc09'
+      };
+
+      const formData = new FormData();
+      formData.append('data', JSON.stringify(notePayload));
+
+      const fullUrl = `${url}`;
+
+      const response = await fetch(fullUrl, {
+          method: 'GET',
+          headers: {
+              Authorization: `Bearer ${apiKey}`,
+              Accept: 'application/json'
+          }
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+  }
 }

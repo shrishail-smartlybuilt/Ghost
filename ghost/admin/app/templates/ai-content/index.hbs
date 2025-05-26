@@ -1,51 +1,107 @@
-<section class="gh-canvas gh-canvas-sticky"> 
-  <GhCanvasHeader class="gh-canvas-header sticky break tablet post-header">
+<section class="gh-canvas gh-canvas-sticky gh-stats">
+  <GhCanvasHeader class="gh-canvas-header break tablet post-header flex-wrap gap-2">
     <GhCustomViewTitle @title="Ideas" />
 
-    <section class="view-actions flex gap-2">
-      <button class="bg-black text-white px-4 py-2 text-sm rounded hover:bg-gray-900">New Content</button>
-      <button class="bg-black text-white px-4 py-2 text-sm rounded hover:bg-gray-900">Start Ideating</button>
-      <button class="bg-black text-white px-4 py-2 text-sm rounded hover:bg-gray-900">Bulk Generate</button>
+    <section class="view-actions alignment flex gap-2">
+      <div class="gh-nav-menu-search">
+        <button class="gh-nav-btn-search" title="Search site (Ctrl/⌘ + K)" type="button" data-test-button="search"><span>{{svg-jar "search"}}</span></button>
+      </div>
+      <button type="button" class="bg-black text-white px-8 text-sm rounded hover:bg-gray-900">New Content</button>
+      <button type="button" class="bg-black text-white px-8 text-sm rounded hover:bg-gray-900" {{on "click" this.getList}}>Start
+        Ideating</button>
+      <button type="button" class="bg-black text-white px-8 text-sm rounded hover:bg-gray-900">Bulk Generate</button>
     </section>
+
   </GhCanvasHeader>
 
   <section class="view-container content-list">
-    <!-- Tab Navigation -->
-    <div class="flex border-b mt-2 mb-4 overflow-x-auto whitespace-nowrap min-w-max sm:gap-8 sm:px-6 gap-4 px-4">
-      {{#each this.tabItems as |tab|}}
-        <button
-          class="flex items-center gap-2 text-sm font-semibold py-2 px-3 border-b-2 transition whitespace-nowrap
-          {{if (eq this.activeTab tab.id) 'border-black text-black' 'border-transparent text-gray-500'}}"
-          {{on "click" (fn this.setTab tab.id)}}
-        >
-          <img width="18" height="18" src="{{tab.icon}}" alt="tab-icon"/>
-          {{tab.label}}
-        </button>
-      {{/each}}
-
-      <!-- Filters -->
-      <div class="flex gap-2 ml-auto">
-        <select class="border px-2 py-1 text-sm rounded"> <option>All Content</option> </select>
-        <select class="border px-2 py-1 text-sm rounded"> <option>All Tags</option> </select>
-        <select class="border px-2 py-1 text-sm rounded"> <option>All Priorities</option> </select>
-        <select class="border px-2 py-1 text-sm rounded"> <option>Sort By</option> </select>
+    <div class="flex tab-border flex-wrap border-b justify-between mt-2 mb-4 overflow-x-auto whitespace-nowrap min-w-max sm:gap-8 sm:px-6 gap-4 px-4">
+      <div class="flex gap-2 flex-wrap">
+          {{#each this.tabItems as |tab|}}
+              <button class="flex items-center tab-title text-sm font-semibold py-2 px-3 border-b-2 transition whitespace-nowrap
+                  {{if (eq this.activeTab tab.id) 'btm-border-black text-black' 'border-transparent text-gray-500'}}" type="button" {{on "click"
+                (fn this.setTab tab.id)}}>
+                    <img width="18" height="18" src="{{tab.icon}}" alt="tab-icon" />
+                    {{tab.label}}
+              </button>
+          {{/each}}
       </div>
+      
+
+      {{!-- <div class="flex gap-1 ml-auto ai-list-select">
+        <select class="select-border px-1 py-1 text-sm rounded">
+          <option>All Content</option>
+        </select>
+        <select class="select-border px-1 py-1 text-sm rounded">
+          <option>All Tags</option>
+        </select>
+        <select class="select-border px-1 py-1 text-sm rounded">
+          <option>All Priorities</option>
+        </select>
+        <select class="select-border px-1 py-1 text-sm rounded">
+          <option>Sort By</option>
+        </select>
+      </div> --}}
+      <div class="flex flex-wrap gap-1 ai-list-select">
+        <div>
+          <label for="contentFilter" class="text-sm block"></label>
+          <select id="contentFilter" class="select-border px-1 py-1 text-sm rounded">
+            <option>All Content</option>
+            <option>New</option>
+            <option>Draft</option>
+            <option>Published</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="tagFilter" class="text-sm block"></label>
+          <select id="tagFilter" class="select-border px-1 py-1 text-sm rounded">
+            <option>All Tags</option>
+            <option>New</option>
+            <option>Draft</option>
+            <option>Published</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="priorityFilter" class="text-sm block"></label>
+          <select id="priorityFilter" class="select-border px-1 py-1 text-sm rounded">
+            <option>All Priorities</option>
+            <option>New</option>
+            <option>Draft</option>
+            <option>Published</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="sortBy" class="text-sm block"></label>
+          <select id="sortBy" class="select-border px-1 py-1 text-sm rounded">
+            <option>Sort By</option>
+            <option>New</option>
+            <option>Draft</option>
+            <option>Published</option>
+          </select>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Content Section -->
     <section class="gh-main-section">
-      
-      <h2 class="text-lg font-semibold mb-4">{{this.activeTabLabel}} Content</h2>
 
-        <div class="space-y-4">
-            {{#if this.hasItems}}
-               {{#each this.items as |item|}}
-                <ListItemComponent @item={{item}} />
-                {{/each}}
-            {{else}}
-                <p class="text-gray-500">No items to display.</p>
-            {{/if}}
-            </div>
+      {{!-- <h2 class="text-lg font-semibold mb-4">{{this.activeTabLabel}} Content</h2> --}}
+
+      <div class="flex flex-col space-y-4 gap-2">
+        {{#each this.model as |item|}}
+        <ListItemComponent @item={{item}} />
+        {{/each}}
+        {{!-- {{#if this.hasItems}}
+        {{#each this.items as |item|}}
+        <ListItemComponent @item={{item}} />
+        {{/each}}
+        {{else}}
+        <p class="text-gray-500">No items to display.</p>
+        {{/if}} --}}
+      </div>
     </section>
   </section>
 </section>
