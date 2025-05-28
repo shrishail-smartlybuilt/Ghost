@@ -48,7 +48,8 @@ const keyGroupMapping = {
     portal_name: 'portal',
     portal_button: 'portal',
     portal_plans: 'portal',
-    require_email_mfa: 'security'
+    require_email_mfa: 'security',
+    jacktrade_api_key: 'jacktrade'
 };
 
 const mapKeyToGroup = (key) => {

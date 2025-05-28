@@ -204,6 +204,7 @@ const Sidebar: React.FC = () => {
                     <NavItem icon='brackets' keywords={advancedSearchKeywords.codeInjection} navid='code-injection' title="Code injection" onClick={handleSectionClick} />
                     <NavItem icon='labs-flask' keywords={advancedSearchKeywords.labs} navid='labs' title="Labs" onClick={handleSectionClick} />
                     <NavItem icon='time-back' keywords={advancedSearchKeywords.history} navid='history' title="History" onClick={handleSectionClick} />
+                    <NavItem icon='modules-3' keywords={advancedSearchKeywords.jacktradeIntegration} navid='jacktrade' title="Jacktrade Integration" onClick={handleSectionClick} />
                 </SettingNavSection>
 
                 {/* {!filter &&

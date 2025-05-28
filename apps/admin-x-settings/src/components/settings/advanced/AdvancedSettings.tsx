@@ -4,6 +4,7 @@ import History from './History';
 import Integrations from './Integrations';
 import Labs from './Labs';
 import MigrationTools from './MigrationTools';
+import JacktradeIntegration from './JacktradeIntegration';
 import React from 'react';
 import SearchableSection from '../../SearchableSection';
 import SpamFilters from './SpamFilters';
@@ -15,7 +16,8 @@ export const searchKeywords = {
     labs: ['advanced', 'labs', 'alpha', 'beta', 'flag', 'routes', 'redirect', 'translation', 'editor', 'portal'],
     history: ['advanced', 'history', 'log', 'events', 'user events', 'staff'],
     dangerzone: ['danger', 'danger zone', 'delete', 'content', 'delete all content', 'delete site'],
-    spamFilters: ['membership', 'signup', 'sign up', 'spam', 'filters', 'prevention', 'prevent', 'block', 'domains', 'email']
+    spamFilters: ['membership', 'signup', 'sign up', 'spam', 'filters', 'prevention', 'prevent', 'block', 'domains', 'email'],
+    jacktradeIntegration: ['jacktrade', 'jacktrade api', 'jacktrade key', 'api key integrations']
 };
 
 const AdvancedSettings: React.FC = () => {
@@ -28,6 +30,7 @@ const AdvancedSettings: React.FC = () => {
             <Labs keywords={searchKeywords.labs} />
             <History keywords={searchKeywords.history} />
             <DangerZone keywords={searchKeywords.dangerzone} />
+            <JacktradeIntegration keywords={searchKeywords.jacktradeIntegration} />
         </SearchableSection>
     );
 };

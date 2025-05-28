@@ -430,6 +430,12 @@
             "flags": "RO"
         }
     },
+    "jacktrade": {
+        "jacktrade_api_key": {
+            "defaultValue": null,
+            "type": "string"
+        }
+    },
     "amp": {
         "amp": {
             "defaultValue": "false",

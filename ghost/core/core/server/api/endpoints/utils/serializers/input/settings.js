@@ -48,6 +48,7 @@ const EDITABLE_SETTINGS = [
     'portal_signup_checkbox_required',
     'mailgun_api_key',
     'mailgun_domain',
+    'jacktrade_api_key',
     'mailgun_base_url',
     'email_track_opens',
     'email_track_clicks',
