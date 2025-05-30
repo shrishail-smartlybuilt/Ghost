@@ -90,18 +90,40 @@
 
       {{!-- <h2 class="text-lg font-semibold mb-4">{{this.activeTabLabel}} Content</h2> --}}
 
-      <div class="flex flex-col space-y-4 gap-2">
-        {{#each this.model as |item|}}
-        <ListItemComponent @item={{item}} />
-        {{/each}}
-        {{!-- {{#if this.hasItems}}
-        {{#each this.items as |item|}}
-        <ListItemComponent @item={{item}} />
-        {{/each}}
-        {{else}}
-        <p class="text-gray-500">No items to display.</p>
-        {{/if}} --}}
-      </div>
+      {{#if this.needsSetup}}
+          <div class="gh-main-section">
+              <div class="gh-main-section-block">
+                  <div class="gh-main-section-content">
+                      <div class="gh-content-box">
+                          <div class="gh-content-box-content">
+                              <h2 class="gh-content-box-title">Setup Required</h2>
+                              <p>{{this.model.message}}</p>
+                              <button type="button" class="gh-btn gh-btn-primary" {{on "click" (fn "openSettings")}}>
+                                  <span>Configure API Key</span>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      {{else if this.error}}
+          <div class="gh-main-section">
+              <div class="gh-main-section-block">
+                  <div class="gh-main-section-content">
+                      <div class="gh-content-box">
+                          <div class="gh-content-box-content">
+                              <h2 class="gh-content-box-title">Error</h2>
+                              <p>{{this.error}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      {{else}}
+          {{#each this.model as |item|}}
+              <ListItemComponent @item={{item}} />
+          {{/each}}
+      {{/if}}
     </section>
   </section>
 </section>

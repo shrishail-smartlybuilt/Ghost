@@ -121,6 +121,9 @@ export default Model.extend(ValidationEngine, {
      */
     requireEmailMfa: attr('boolean'),
 
+    // Jacktrade settings
+    jacktrade_api_key: attr('string'),
+
     // HACK - not a real model attribute but a workaround for Ember Data not
     //        exposing meta from save responses
     _meta: attr()

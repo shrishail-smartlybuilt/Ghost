@@ -57,6 +57,7 @@ export default class SettingsService extends Service.extend(ValidationEngine) {
             this._loadingPromise = this.store
                 .queryRecord('setting', {group: 'site,theme,private,members,portal,newsletter,email,amp,labs,slack,unsplash,views,firstpromoter,editor,comments,analytics,announcement,pintura,donations,recommendations,security,jacktrade'})
                 .then((settings) => {
+                    this.settingsModel = settings;
                     this._loadingPromise = null;
                     return settings;
                 });

@@ -2,19 +2,26 @@ import AuthenticatedRoute from 'ghost-admin/routes/authenticated';
 import fetch from 'fetch';
 import {inject as service} from '@ember/service';
 
-export default class PostsRoute extends AuthenticatedRoute {
+export default class AiContentRoute extends AuthenticatedRoute {
     @service router;
     @service feature;
+    @service settings;
 
     modelName = 'ai-content-post';
 
-    constructor() {
-        super(...arguments);
-    }
-
     async model() {
+        await this.settings.fetch();
+        
+        // Check if jacktrade API key is configured
+        if (!this.settings.jacktrade_api_key) {
+            return {
+                needsSetup: true,
+                message: 'Please configure your Jacktrade API key in settings to use AI content features.'
+            };
+        }
+
         try {
-            const url = 'http://localhost:8000/api/v1/content/conversations/682dbf626ae9dec331a9f3f3/threads';
+            const url = 'http://localhost:8000/api/v1/content/conversations/68246c39f58e1935c0f009b3/threads';
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
@@ -29,7 +36,17 @@ export default class PostsRoute extends AuthenticatedRoute {
             const data = await response.json();
             return data.result;
         } catch (error) {
-            return [];
+            return {
+                needsSetup: false,
+                error: error.message
+            };
         }
+    }
+
+    setupController(controller, model) {
+        super.setupController(controller, model);
+        controller.set('needsSetup', model.needsSetup);
+        controller.set('error', model.error);
+        controller.set('data', model.data);
     }
 }
